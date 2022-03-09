@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './login-screen.dart';
+import './signup-screen.dart';
 class Splash extends StatelessWidget{
   static const routeName = '/';
   Widget _buttonBuilder(String text,Color buttonColor,Color textColor,){
@@ -46,7 +47,9 @@ class Splash extends StatelessWidget{
               ),
               SizedBox(height: 50,),
               GestureDetector(
-                onTap: (){},
+                onTap: (){
+                  Navigator.of(context).pushReplacementNamed(SignupScreen.routeName);
+                },
                 child: _buttonBuilder('Get Started', Colors.deepOrange,Colors.white),
               ),
               GestureDetector(
