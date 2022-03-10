@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../screens/movie-screen.dart';
 class LoginFormWidget extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -57,7 +57,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget>{
             ),
           ),
           GestureDetector(
-            onTap: (){},
+            onTap: (){
+              Navigator.of(context).pushNamed(MovieScreen.routeName);
+            },
             child: Container(
               width: 150,
               margin: const EdgeInsets.only(top:30),
