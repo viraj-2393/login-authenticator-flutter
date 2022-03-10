@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/movie-screen.dart';
+import '../providers/UserData.dart';
+import 'package:provider/provider.dart';
 class LoginFormWidget extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -8,9 +10,13 @@ class LoginFormWidget extends StatefulWidget{
 }
 
 class _LoginFormWidgetState extends State<LoginFormWidget>{
+  final _form = GlobalKey<FormState>();
+  String name = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Form(
+      key:_form,
       child: Column(
         children: [
           Container(
@@ -24,6 +30,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget>{
                   hintText: 'Name...',
                   prefixIcon: Icon(Icons.person,color: Colors.grey,)
               ),
+              onSaved: (value){
+                  name = value.toString();
+               },
               validator: (value){
                 if(value!.isEmpty){
                   return 'Please provide a name';
@@ -41,14 +50,18 @@ class _LoginFormWidgetState extends State<LoginFormWidget>{
                 color: Colors.white
             ),
             child: TextFormField(
+              keyboardType: TextInputType.visiblePassword,
               decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Password...',
                   prefixIcon: Icon(Icons.password,color: Colors.grey,)
               ),
+              onSaved: (value){
+                password = value.toString();
+              },
               validator: (value){
-                if(value!.isEmpty){
-                  return 'Please provide password';
+                if(value!.isEmpty || value.length < 6){
+                  return 'Please provide a valid password';
                 }
                 else{
                   return null;
@@ -58,7 +71,21 @@ class _LoginFormWidgetState extends State<LoginFormWidget>{
           ),
           GestureDetector(
             onTap: (){
-              Navigator.of(context).pushNamed(MovieScreen.routeName);
+              if (_form.currentState!.validate()) {
+                _form.currentState!.save();
+                String existingUserName = Provider.of<UserData>(context,listen: false).getName();
+                String existingUserPass = Provider.of<UserData>(context,listen: false).getPassword();
+                if((name != '' && password != '') && (name == existingUserName && password == existingUserPass)){
+                  Navigator.of(context).pushReplacementNamed(MovieScreen.routeName);
+                }
+                else{
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Incorrect credentials.')));
+                }
+
+              }
+              else{
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid Data Please try again!'),));
+              }
             },
             child: Container(
               width: 150,

@@ -24,7 +24,7 @@ class CompanyInfo extends StatelessWidget{
                 Row(children: const [Text('Company: ',style: TextStyle(fontSize: 16),),Text('Geeksynergy Technologies Pvt Ltd',style: TextStyle(color: Colors.grey),)],),
                 Row(children: const [Text('Address: ',style: TextStyle(fontSize: 16),),Text('Sanjaynagar, Bengaluru-56',style: TextStyle(color: Colors.grey),)],),
                 Row(children: const [Text('Phone: ',style: TextStyle(fontSize: 16),),Text('XXXXXXXX09',style: TextStyle(color: Colors.grey),)],),
-                Row(children: const [Text('Email: ',style: TextStyle(fontSize: 16),),Text('XXX@geeksynergy.com',style: TextStyle(color: Colors.grey),)],)
+                Row(children: const [Text('Email: ',style: TextStyle(fontSize: 16),),Text('XXXXX@geeksynergy.com',style: TextStyle(color: Colors.grey),)],)
               ],
             ),
           ) ,

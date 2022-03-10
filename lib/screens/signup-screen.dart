@@ -8,17 +8,19 @@ class SignupScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFF3F4072),
-        body: Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(top:100),
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            children:  [
-              const Text('Welcome to MOVI!',style: TextStyle(fontSize: 30,color: Colors.white),),
-              const Text('Your one stop destination for entertainment',style: TextStyle(color: Colors.grey),),
-              const SizedBox(height: 50,),
-              SignupFormWidget()
-            ],
+        body:SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top:100),
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              children:  [
+                const Text('Welcome to MOVI!',style: TextStyle(fontSize: 30,color: Colors.white),),
+                const Text('Your one stop destination for entertainment',style: TextStyle(color: Colors.grey),),
+                const SizedBox(height: 50,),
+                SignupFormWidget()
+              ],
+            ),
           ),
         )
     );

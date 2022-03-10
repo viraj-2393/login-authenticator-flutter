@@ -6,6 +6,7 @@ import './screens/signup-screen.dart';
 import './providers/MovieData.dart';
 import './screens/movie-screen.dart';
 import './screens/company_info.dart';
+import './providers/UserData.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (ctx) => MovieData())
+      ChangeNotifierProvider(create: (ctx) => MovieData()),
+      ChangeNotifierProvider(create: (ctx) => UserData())
     ],
     child:MaterialApp(
       theme: ThemeData(
